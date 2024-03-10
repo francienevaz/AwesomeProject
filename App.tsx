@@ -76,18 +76,17 @@ function App(): React.JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+          <Section title="Primeiros passos com React Native">
+           Editando o documento <Text style={styles.highlight}>App.tsx</Text> e fazendo as primeiras alterações...
           </Section>
-          <Section title="See Your Changes">
+          <Section title="Verificando se deu certo">
             <ReloadInstructions />
           </Section>
-          <Section title="Debug">
+          <Section title="Debuggando">
             <DebugInstructions />
           </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
+          <Section title="Saiba mais...">
+            Leia a documentação e descubra o que não fazer kkk:
           </Section>
           <LearnMoreLinks />
         </View>
