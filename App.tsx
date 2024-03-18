@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, ScrollView } from 'react-native';
+import { React, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, ScrollView, Button } from 'react-native';
 
 const CustomButton = ({ title, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.button}>
@@ -8,8 +8,15 @@ const CustomButton = ({ title, onPress }) => (
 );
 
 const App = () => {
-  const handlePress = () => {
-    console.log('Botão pressionado');
+ const [enteredGoalText, setEnteredGoalText] = useState('');
+ const [courseGoals, setCourseGoals] = useState([]);
+
+  const goalInputHandler = (enteredText) => {
+    setEnteredGoalText(enteredText);
+  };
+
+  const addGoalHandler = () => {
+      setCourseGoals([...courseGoals, enteredGoalText]);
   };
 
   return (
@@ -22,8 +29,12 @@ const App = () => {
                   />
        </View>
       <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder="O que você quer fazer hoje?"/>
-          <CustomButton title="Add Goal" onPress={handlePress} />
+          <TextInput
+              style={styles.textInput}
+              placeholder="O que você quer fazer hoje?"
+              onChangeText={goalInputHandler}
+          />
+          <CustomButton title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
           <Text>List of goals...</Text>
