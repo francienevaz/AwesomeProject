@@ -16,7 +16,10 @@ const App = () => {
   };
 
   const addGoalHandler = () => {
-      setCourseGoals([...courseGoals, enteredGoalText]);
+      setCourseGoals(currentCourseGoals => [
+        ...currentCourseGoals,
+        enteredGoalText,
+      ]);
   };
 
   return (
@@ -37,7 +40,12 @@ const App = () => {
           <CustomButton title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-          <Text>List of goals...</Text>
+          {courseGoals.map((goal)=> (
+            <View key={goal} style={styles.textGoals}>
+                <Text style={styles.textItem}>{goal}</Text>
+            </View>
+
+          ))}
       </View>
     </View>
   );
@@ -70,6 +78,16 @@ const styles = StyleSheet.create({
     width: '80%',
     marginRight: 8,
     padding: 20,
+  },
+  textGoals: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+  },
+  textItem: {
+    color: "white",
+    fontSize: 22,
   },
   button: {
     backgroundColor: 'crimson',
