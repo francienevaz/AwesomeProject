@@ -40,12 +40,13 @@ const App = () => {
           <CustomButton title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-          {courseGoals.map((goal)=> (
-            <View key={goal} style={styles.textGoals}>
-                <Text style={styles.textItem}>{goal}</Text>
-            </View>
-
-          ))}
+          <ScrollView>
+            {courseGoals.map((goal)=> (
+                <View key={goal} style={styles.textGoals}>
+                    <Text style={styles.textItem}>{goal}</Text>
+                </View>
+            ))}
+          </ScrollView>
       </View>
     </View>
   );
