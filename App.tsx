@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, ScrollView, Button, FlatList } from 'react-native';
 
 const CustomButton = ({ title, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.button}>
@@ -18,7 +18,7 @@ const App = () => {
   const addGoalHandler = () => {
       setCourseGoals(currentCourseGoals => [
         ...currentCourseGoals,
-        enteredGoalText,
+        { text: enteredGoalText, key: Math.random().toString() },
       ]);
   };
 
@@ -40,13 +40,17 @@ const App = () => {
           <CustomButton title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-          <ScrollView>
-            {courseGoals.map((goal)=> (
-                <View key={goal} style={styles.textGoals}>
-                    <Text style={styles.textItem}>{goal}</Text>
+          <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return(
+                <View style={styles.textGoals}>
+                     <Text style={styles.textItem}>{itemData.item.text}</Text>
                 </View>
-            ))}
-          </ScrollView>
+                );
+            }}
+             alwaysBounceVertical={false}
+          />
       </View>
     </View>
   );
