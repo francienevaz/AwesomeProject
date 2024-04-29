@@ -1,17 +1,22 @@
-import { React, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, ScrollView, Button, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, ScrollView, Button, FlatList, TouchableOpacityProps } from 'react-native';
 
-const CustomButton = ({ title, onPress }) => (
-  <TouchableOpacity onPress={onPress} style={styles.button}>
+interface CustomButtonProps extends TouchableOpacityProps {
+  title: string;
+  onPress: () => void;
+}
+
+const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, ...props }) => (
+  <TouchableOpacity onPress={onPress} style={styles.button} {...props}>
     <Text style={styles.buttonText}>{title}</Text>
   </TouchableOpacity>
 );
 
 const App = () => {
  const [enteredGoalText, setEnteredGoalText] = useState('');
- const [courseGoals, setCourseGoals] = useState([]);
+ const [courseGoals, setCourseGoals] = useState<{ text: string; key: string; }[]>([]);
 
-  const goalInputHandler = (enteredText) => {
+  const goalInputHandler = (enteredText: string) => {
     setEnteredGoalText(enteredText);
   };
 
